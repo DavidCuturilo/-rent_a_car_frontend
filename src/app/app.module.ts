@@ -12,6 +12,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AdresaPageComponent } from './adresa-page/adresa-page.component';
 import { AdresaComponent } from './adresa-page/adresa/adresa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GradComponent } from './adresa-page/grad/grad.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavBarComponent,
     AdresaPageComponent,
     AdresaComponent,
+    GradComponent,
   ],
   imports: [
     BrowserModule,

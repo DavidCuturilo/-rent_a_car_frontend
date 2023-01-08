@@ -1,0 +1,24 @@
+.example-card {
+  margin-top: 2rem;
+  border-left: 0.1rem solid #00999e;
+  border-bottom: 0.1rem solid #00999e;
+
+  .edit {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .controls {
+    display: flex;
+    justify-content: space-around;
+
+    mat-icon {
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .disable {
+      pointer-events: none;
+    }
+  }
+}

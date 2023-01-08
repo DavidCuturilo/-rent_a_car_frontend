@@ -11,10 +11,12 @@ import { EnvService } from 'src/services/env.service';
 })
 export class AdresaPageComponent implements OnInit {
   adrese: any = [];
+  gradovi: any = [];
   constructor(private http: HttpClient, private injector: Injector, private _snackBar: MatSnackBar) {}
 
   envService: EnvService = this.injector.get(EnvService);
   addingNew: boolean = false;
+  addingNewGrad: boolean = false;
   public novaAdresa: {
     ulica: string;
     broj: number;
@@ -22,9 +24,14 @@ export class AdresaPageComponent implements OnInit {
     nazivDrzave: string;
     adresaID?: number;
   };
+  public noviGrad: {
+    nazivGrada: string;
+    nazivDrzave: string;
+  };
 
   ngOnInit(): void {
     this.getAllAdrese();
+    this.getAllGradovi();
   }
 
   async getAllAdrese() {
@@ -33,6 +40,19 @@ export class AdresaPageComponent implements OnInit {
     )
       .then((response) => {
         this.adrese = response;
+      })
+      .catch((error) => {
+        console.log('Error getting addresses: ', error);
+      });
+  }
+
+  async getAllGradovi() {
+    const response = await lastValueFrom(
+      this.http.get(`${this.envService.apiURL}/communities/allGrad`)
+    )
+      .then((response) => {
+        this.gradovi = response;
+        console.log(this.gradovi)
       })
       .catch((error) => {
         console.log('Error getting addresses: ', error);
@@ -50,6 +70,17 @@ export class AdresaPageComponent implements OnInit {
     this.novaAdresa = { ulica: '', broj: 0, nazivGrada: '', nazivDrzave: '' };
   }
 
+  addNewGrad() {
+    if (this.addingNewGrad) return;
+    this.addingNewGrad = true;
+    this.noviGrad = { nazivGrada: '', nazivDrzave: '' };
+  }
+
+  cancelNewGrad() {
+    this.addingNewGrad = false;
+    this.noviGrad = { nazivGrada: '', nazivDrzave: '' };
+  }
+
   async saveNewAddress() {
     this.novaAdresa.broj = +this.novaAdresa.broj;
     try {
@@ -63,6 +94,26 @@ export class AdresaPageComponent implements OnInit {
       this.novaAdresa = {
         ulica: '',
         broj: 0,
+        nazivGrada: '',
+        nazivDrzave: '',
+      };
+      this.ngOnInit();
+      this.openSnackBar(response.message)
+    } catch (error) {
+      this.openSnackBar(error.message);
+    }
+  }
+
+  async saveNewGrad() {
+    try {
+      const response: any = await lastValueFrom(
+        this.http.post(
+          `${this.envService.apiURL}/communities/insertGrad`,
+          this.noviGrad
+        )
+      );
+      this.addingNewGrad = false;
+      this.noviGrad = {
         nazivGrada: '',
         nazivDrzave: '',
       };

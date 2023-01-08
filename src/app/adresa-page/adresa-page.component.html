@@ -45,4 +45,43 @@
       <app-adresa [adresa]="adresa"></app-adresa>
     </ng-container>
   </div>
+
+  <h2>Gradovi</h2>
+  <button class="dodaj" (click)="addNewGrad()" color="primary" mat-button>
+    <mat-icon>add</mat-icon>
+    Dodaj novi grad
+  </button>
+  <div class="novi-grad" *ngIf="addingNewGrad">
+    <mat-card *ngIf="addingNewGrad" class="card">
+      <mat-card-content class="card-content">
+        <div class="edit-container">
+          <mat-form-field class="example-full-width">
+            <mat-label>Grad:</mat-label>
+            <input matInput [(ngModel)]="noviGrad.nazivGrada"/>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Drzava:</mat-label>
+            <input matInput [(ngModel)]="noviGrad.nazivDrzave"/>
+          </mat-form-field>
+        </div>
+
+        <div class="controls">
+          <mat-icon
+            (click)="saveNewGrad()"
+            matTooltip="Sacuvaj"
+          >save</mat-icon>
+
+          <mat-icon
+            (click)="cancelNewGrad()"
+            matTooltip="Poništi"
+          >cancel</mat-icon>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="grad-container">
+    <ng-container *ngFor="let grad of gradovi" class="grad-cards">
+      <app-grad [grad]="grad"></app-grad>
+    </ng-container>
+  </div>
 </div>

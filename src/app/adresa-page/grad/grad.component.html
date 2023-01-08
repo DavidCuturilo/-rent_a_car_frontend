@@ -2,33 +2,23 @@
   <mat-card-content>
     <div class="no-edit" *ngIf="!editMode">
       <div class="adresa">
-        <p>Ulica: {{ adresa.ulica }}</p>
-        <p>Broj: {{ adresa.broj }}</p>
-        <p>Grad: {{ adresa.nazivGrada }}</p>
-        <p>Drzava: {{ adresa.nazivDrzave }}</p>
+        <p>Grad: {{ grad.nazivGrada }}</p>
+        <p>Drzava: {{ grad.nazivDrzave }}</p>
       </div>
     </div>
     <div class="edit">
       <mat-form-field *ngIf="editMode" class="example-full-width">
-        <mat-label>Ulica</mat-label>
-        <input matInput [(ngModel)]="adresa.ulica" />
-      </mat-form-field>
-      <mat-form-field *ngIf="editMode" class="example-full-width">
-        <mat-label>Broj</mat-label>
-        <input matInput [(ngModel)]="adresa.broj" />
-      </mat-form-field>
-      <mat-form-field *ngIf="editMode" class="example-full-width">
         <mat-label>Grad</mat-label>
-        <input matInput [(ngModel)]="adresa.nazivGrada" />
+        <input matInput [(ngModel)]="grad.nazivGrada" />
       </mat-form-field>
       <mat-form-field *ngIf="editMode" class="example-full-width">
         <mat-label>Drzava</mat-label>
-        <input matInput [(ngModel)]="adresa.nazivDrzave" />
+        <input matInput [(ngModel)]="grad.nazivDrzave" />
       </mat-form-field>
     </div>
     <div class="controls">
       <mat-icon
-        (click)="editAddress()" [ngClass]="editMode ? 'disable' : 'normal'"
+        (click)="editGrad()" [ngClass]="editMode ? 'disable' : 'normal'"
         matTooltip="Izmeni"
       >build</mat-icon>
 
@@ -38,12 +28,12 @@
       >cancel</mat-icon>
 
       <mat-icon [ngClass]="editMode ? 'disable' : 'normal'"
-        (click)="deleteAddress()"
+        (click)="deleteGrad()"
         matTooltip="Obrisi"
       >delete_outline</mat-icon>
 
       <mat-icon
-        (click)="updateAddress()" [ngClass]="!editMode ? 'disable' : 'normal'"
+        (click)="updateGrad()" [ngClass]="!editMode ? 'disable' : 'normal'"
         matTooltip="Sacuvaj"
       >save</mat-icon>
     </div>

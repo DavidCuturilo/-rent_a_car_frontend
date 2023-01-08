@@ -40,6 +40,42 @@
     }
   }
 
+  .novi-grad {
+    height: 150px;
+    margin-bottom: 1rem;
+    .card {
+      height: 140px;
+      width: 12%;
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+
+
+        .edit-container {
+          display: flex;
+          flex-direction: column;
+          height: 100px;
+
+          .example-full-width {
+            height: 45px !important;
+          }
+        }
+
+        .controls {
+          display: flex;
+          width: 40%;
+          justify-content: space-evenly;
+          cursor: pointer;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+
   .dodaj {
     width: 10%;
     background-color: white;
@@ -54,6 +90,20 @@
     width: 90%;
 
     .adresa-cards {
+      width: 30%;
+      min-width: 30%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .grad-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 90%;
+
+    .grad-cards {
       width: 30%;
       min-width: 30%;
       display: flex;
