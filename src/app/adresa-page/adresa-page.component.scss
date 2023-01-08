@@ -1,6 +1,69 @@
-.adresa-tab {
-  margin-top: 10rem;
-  margin-left: 15rem;
+.container {
+  margin-top: 10%;
+  margin-left: 10%;
+  color: #00999e;
+  display: flex;
+  flex-direction: column;
 
-  margin-bottom: 50px
+  .nova-adresa {
+    height: 220px;
+    .card {
+      height: 210px;
+      width: 12%;
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+
+
+        .edit-container {
+          display: flex;
+          flex-direction: column;
+          height: 100px;
+
+          .example-full-width {
+            height: 45px !important;
+          }
+        }
+
+        .controls {
+          display: flex;
+          width: 40%;
+          justify-content: space-evenly;
+          cursor: pointer;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+
+  .dodaj {
+    width: 10%;
+    background-color: white;
+    border: 0.1rem solid #00999e;
+    color: #00999e;
+  }
+
+  .adresa-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 90%;
+
+    .adresa-cards {
+      width: 30%;
+      min-width: 30%;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
+
+.edit-container{
+  display: flex;
+  flex-direction: column;
+}
+

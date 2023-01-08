@@ -11,6 +11,7 @@
   margin-bottom: 1rem;
   z-index: 1;
   padding: 0px;
+  background-color: white;
 
   .nav-bar-name {
     margin-left: 0.5rem;
@@ -28,5 +29,24 @@
       color: #00999e;
 
     }
+
+    .adresa-menu {
+      font-size: 1.5rem;
+      color: #00999e;
+      border: none;
+      background-color: white;
+
+
+      .mat-menu-item {
+        background-color: white;
+        border: 0.1rem solid #009993;
+        color: #00999e;
+        font-size: 1rem;
+      }
+    }
+
+
   }
 }
+
+

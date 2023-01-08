@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -16,11 +15,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatTabsModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 @NgModule({
   imports: [
-    MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,
@@ -37,10 +36,9 @@ import { MatTabsModule } from '@angular/material';
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
-    MatTabsModule,
+    MatFormFieldModule
   ],
   exports: [
-    MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,
@@ -57,7 +55,7 @@ import { MatTabsModule } from '@angular/material';
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
-    MatTabsModule,
+    MatFormFieldModule
   ],
 })
 export class MaterialModule {}

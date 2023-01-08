@@ -1,2 +1,48 @@
-<app-adresa></app-adresa>
-<app-grad></app-grad>
+<div class="container">
+  <h2>Adrese</h2>
+  <button class="dodaj" (click)="addNewAddress()" color="primary" mat-button>
+    <mat-icon>add</mat-icon>
+    Dodaj novu adresu
+  </button>
+  <div class="nova-adresa" *ngIf="addingNew">
+    <mat-card *ngIf="addingNew" class="card">
+      <mat-card-content class="card-content">
+        <div class="edit-container">
+          <mat-form-field class="example-full-width">
+            <mat-label>Ulica:</mat-label>
+            <input matInput [(ngModel)]="novaAdresa.ulica"/>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Broj:</mat-label>
+            <input matInput [(ngModel)]="novaAdresa.broj"/>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Grad:</mat-label>
+            <input matInput [(ngModel)]="novaAdresa.nazivGrada"/>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Drzava:</mat-label>
+            <input matInput [(ngModel)]="novaAdresa.nazivDrzave"/>
+          </mat-form-field>
+        </div>
+
+        <div class="controls">
+          <mat-icon
+            (click)="saveNewAddress()"
+            matTooltip="Sacuvaj"
+          >save</mat-icon>
+
+          <mat-icon
+            (click)="cancelNewAddress()"
+            matTooltip="Poništi"
+          >cancel</mat-icon>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="adresa-container">
+    <ng-container *ngFor="let adresa of adrese" class="adresa-cards">
+      <app-adresa [adresa]="adresa"></app-adresa>
+    </ng-container>
+  </div>
+</div>

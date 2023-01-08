@@ -3,8 +3,18 @@
     <h2 class="nav-bar-name">Rent a car</h2>
   </div>
   <div class="nav-items">
-    <a routerLink="/adresa-page" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Adresa</a>
-    <a routerLink="/vozilo" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Vozilo</a>
-    <a routerLink="/racun" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Racun</a>
+    <button [matMenuTriggerFor]="menuAdresa" class="adresa-menu">Adresa</button>
+    <mat-menu #menuAdresa="matMenu">
+      <button mat-menu-item routerLink="/adresa-page">Adresa</button>
+      <button mat-menu-item>Grad</button>
+    </mat-menu>
+    <button [matMenuTriggerFor]="menuVozilo" class="adresa-menu">Vozilo</button>
+    <mat-menu #menuVozilo="matMenu">
+      <button mat-menu-item routerLink="/adresa-page">Vozilo</button>
+    </mat-menu>
+    <button [matMenuTriggerFor]="menuRacun" class="adresa-menu">Racun</button>
+    <mat-menu #menuRacun="matMenu">
+      <button mat-menu-item>Grad</button>
+    </mat-menu>
   </div>
 </mat-toolbar>
