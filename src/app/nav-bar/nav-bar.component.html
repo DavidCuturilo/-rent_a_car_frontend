@@ -1,13 +1,10 @@
 <mat-toolbar class="nav-bar">
   <div>
-    <h2 class="nav-bar-name">Rent a car</h2>
+    <span class="nav-bar-name">Rent a car</span>
   </div>
   <div class="nav-items">
-    <button [matMenuTriggerFor]="menuAdresa" class="adresa-menu">Adresa</button>
-    <mat-menu #menuAdresa="matMenu">
-      <button mat-menu-item routerLink="/adresa-page">Adresa</button>
-      <button mat-menu-item>Grad</button>
-    </mat-menu>
+    <button routerLink="/adresa-page">Adresa</button>
+    <button routerLink="/ponuda-page">Ponuda</button>
     <button [matMenuTriggerFor]="menuVozilo" class="adresa-menu">Vozilo</button>
     <mat-menu #menuVozilo="matMenu">
       <button mat-menu-item routerLink="/adresa-page">Vozilo</button>

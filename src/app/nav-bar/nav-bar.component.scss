@@ -14,7 +14,8 @@
   background-color: white;
 
   .nav-bar-name {
-    margin-left: 0.5rem;
+    margin-left: 1rem;
+    font-size: 1.5rem;
   }
 
   .nav-items {
@@ -31,12 +32,6 @@
     }
 
     .adresa-menu {
-      font-size: 1.5rem;
-      color: #00999e;
-      border: none;
-      background-color: white;
-
-
       .mat-menu-item {
         background-color: white;
         border: 0.1rem solid #009993;
@@ -44,8 +39,14 @@
         font-size: 1rem;
       }
     }
+  }
 
-
+  .nav-items > button {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #00999e;
+    border: none;
+    background-color: white;
   }
 }
 

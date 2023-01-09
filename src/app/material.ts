@@ -16,7 +16,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [
@@ -36,7 +38,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatCardModule,
@@ -55,7 +60,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule
   ],
 })
 export class MaterialModule {}
