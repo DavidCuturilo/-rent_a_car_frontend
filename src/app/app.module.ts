@@ -16,6 +16,7 @@ import { GradComponent } from './adresa-page/grad/grad.component';
 import { PonudaPageComponent } from './ponuda-page/ponuda-page.component';
 import { PonudaComponent } from './ponuda-page/ponuda/ponuda.component';
 import { ZahtevComponent } from './ponuda-page/zahtev/zahtev.component';
+import { VoziloPageComponent } from './vozilo-page/vozilo-page.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ZahtevComponent } from './ponuda-page/zahtev/zahtev.component';
     PonudaPageComponent,
     PonudaComponent,
     ZahtevComponent,
+    VoziloPageComponent,
   ],
   imports: [
     BrowserModule,

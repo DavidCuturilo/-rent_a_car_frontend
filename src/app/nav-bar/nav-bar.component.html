@@ -5,13 +5,7 @@
   <div class="nav-items">
     <button routerLink="/adresa-page">Adresa</button>
     <button routerLink="/ponuda-page">Ponuda</button>
-    <button [matMenuTriggerFor]="menuVozilo" class="adresa-menu">Vozilo</button>
-    <mat-menu #menuVozilo="matMenu">
-      <button mat-menu-item routerLink="/adresa-page">Vozilo</button>
-    </mat-menu>
-    <button [matMenuTriggerFor]="menuRacun" class="adresa-menu">Racun</button>
-    <mat-menu #menuRacun="matMenu">
-      <button mat-menu-item>Grad</button>
-    </mat-menu>
+    <button routerLink="/vozilo-page">Vozilo</button>
+    <button routerLink="/racun-page">Racun</button>
   </div>
 </mat-toolbar>

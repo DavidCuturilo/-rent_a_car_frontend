@@ -1,0 +1,59 @@
+.container{
+  padding: 2rem;
+  margin-top: 5rem;
+
+  .search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .search-field {
+      display: flex;
+      align-items: center;
+
+      mat-icon {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .title {
+    font-size: 2rem;
+    color: #00999e;
+    margin-right: 1rem;
+  }
+}
+
+.btn-edit{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.btn-edit > * {
+  cursor: pointer;
+  transition: all .1s;
+}
+
+.btn-edit > *:hover{
+  transform: scale(1.15);
+}
+
+.spiner{
+  margin:auto;
+}
+
+.mat-input{
+  font-size: .9rem !important;
+  width: fit-content;
+  width: 8vw;
+}
+
+.table {
+  width: 100%;
+}
+
+.dodaj {
+  background-color: #00999e;
+  color: white;
+}

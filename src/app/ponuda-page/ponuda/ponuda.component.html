@@ -17,7 +17,7 @@
                               <div class="btn-edit" *ngSwitchCase="'isEdit'">
                                   <mat-icon (click)="izmeni(element)" fontIcon="edit"
                                       #tooltip="matTooltip" matTooltip="Izmeni" matTooltipPosition="below">edit</mat-icon>
-                                  <mat-icon (click)=obrisi(element) fontIcon="delete" #tooltip="matTooltip" matTooltip="Obriši"
+                                  <mat-icon (click)="obrisi(element)" fontIcon="delete" #tooltip="matTooltip" matTooltip="Obriši"
                                       matTooltipPosition="below">delete</mat-icon>
                               </div>
                               <span *ngSwitchDefault>

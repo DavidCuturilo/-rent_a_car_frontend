@@ -1,13 +1,23 @@
 <div class="container">
-  <span class="title">Zahtevi</span>
+  <div class="search">
+    <span class="title">Vozila</span>
+    <div class="search-field">
+      <mat-form-field class="mat-input">
+        <mat-label>Pretraga po marci</mat-label>
+        <input matInput [(ngModel)]="searchValue" />
+      </mat-form-field>
+      <mat-icon fontIcon="search" matTooltip="Pretrazi" (click)="pretrazi(searchValue)">search</mat-icon>
+      <mat-icon fontIcon="cancel" matTooltip="Resetuj pretragu" (click)="resetujPretragu()">cancel</mat-icon>
+    </div>
+  </div>
   <mat-card class="card">
       <mat-card-content class="card-content">
-          <button (click)="dodajZahtev()" class="dodaj" mat-raised-button>
+          <button (click)="dodajVozilo()" class="dodaj" mat-raised-button>
               <mat-icon>add</mat-icon>
-              Dodaj novi zahtev
+              Dodaj novo vozilo
           </button>
           <article>
-              <table mat-table [dataSource]="zahtevi" class="table">
+              <table mat-table [dataSource]="vozila" class="table">
                   <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
                       <th mat-header-cell *matHeaderCellDef>
                           {{ col.label }}
@@ -36,7 +46,7 @@
                                       matTooltipPosition="below">delete</mat-icon>
                               </div>
                               <span *ngSwitchDefault #dataField>
-                                <mat-form-field class="mat-input" ngClass="col.key == 'sadrzaj' ? sadrzaj : normal">
+                                <mat-form-field class="mat-input">
                                   <input [type]="col.type" matInput
                                       [(ngModel)]="element[col.key]" />
                               </mat-form-field>
