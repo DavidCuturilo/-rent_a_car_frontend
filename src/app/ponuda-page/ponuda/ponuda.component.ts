@@ -25,6 +25,8 @@ export class PonudaComponent implements OnInit {
   imenaPrezimenaRadnika = [];
   imenaPrezimenaKlijenata = [];
   nasloviZahteva = [];
+  ponudeResetSearch
+  searchValue = '';
 
   async ngOnInit() {
     await this.getPonude();
@@ -89,6 +91,41 @@ export class PonudaComponent implements OnInit {
       duration: 4000,
       verticalPosition: 'top',
     });
+  }
+
+  async pretrazi(searchValue: string) {
+    this.ponudeResetSearch = this.ponude;
+    const ponuda = this.ponude.find((ponuda) => ponuda.broj == searchValue);
+    console.log(ponuda)
+    if (!ponuda) {
+      this.openSnackBar('There is no ponuda with that number! Try again')
+    } else {
+      try {
+        const response: any = await lastValueFrom(
+          this.http.get(
+            `${this.envService.apiURL}/communities/ponudaByID/${ponuda.ponudaID}`
+          )
+        );
+        if (response?.response?.error) {
+          this.openSnackBar(response.message);
+        } else {
+          this.ponude = Array.isArray(response) ? response : [response];
+          this.ponude.map((ponuda) => {
+            (ponuda.datumUnosa = new Date(ponuda.datumUnosa).toLocaleString()),
+              (ponuda.datumStampe = new Date(ponuda.datumStampe).toLocaleString()),
+              (ponuda.datumIsteka = new Date(ponuda.datumIsteka).toLocaleString());
+          });
+          this.openSnackBar(`Successfully searched ponude`);
+        }
+      } catch (error) {
+        this.openSnackBar(error.message);
+      }
+    }
+  }
+
+  resetujPretragu() {
+    this.ponude = this.ponudeResetSearch;
+    this.searchValue = '';
   }
 
   async getRadnike() {
