@@ -17,6 +17,9 @@ export class AdresaPageComponent implements OnInit {
   envService: EnvService = this.injector.get(EnvService);
   addingNew: boolean = false;
   addingNewGrad: boolean = false;
+  naziviGradova = [];
+  naziviDrzava = [];
+
   public novaAdresa: {
     ulica: string;
     broj: number;
@@ -32,6 +35,7 @@ export class AdresaPageComponent implements OnInit {
   ngOnInit(): void {
     this.getAllAdrese();
     this.getAllGradovi();
+    this.getAllDrzave();
   }
 
   async getAllAdrese() {
@@ -50,9 +54,27 @@ export class AdresaPageComponent implements OnInit {
     const response = await lastValueFrom(
       this.http.get(`${this.envService.apiURL}/communities/allGrad`)
     )
-      .then((response) => {
+      .then((response: any) => {
         this.gradovi = response;
+        response.forEach(grad => {
+          console.log(grad.nazivGrada)
+          this.naziviGradova.push(grad.nazivGrada)
+        });
         console.log(this.gradovi)
+      })
+      .catch((error) => {
+        console.log('Error getting addresses: ', error);
+      });
+  }
+
+  getAllDrzave() {
+    const response = lastValueFrom(
+      this.http.get(`${this.envService.apiURL}/communities/allDrzava`)
+    )
+      .then((response: any) => {
+        response.forEach(drzava => {
+          this.naziviDrzava.push(drzava.nazivDrzave)
+        });
       })
       .catch((error) => {
         console.log('Error getting addresses: ', error);

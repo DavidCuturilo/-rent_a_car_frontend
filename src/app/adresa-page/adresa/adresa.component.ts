@@ -19,6 +19,8 @@ export class AdresaComponent implements OnInit {
   editMode: boolean = false;
 
   novaAdresa;
+  gradovi = [];
+  drzave = [];
 
   @Input() adresa: {
     ulica: string;
@@ -28,7 +30,10 @@ export class AdresaComponent implements OnInit {
     adresaID: number;
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllGradovi();
+    this.getAllDrzave();
+  }
 
   async deleteAddress() {
     this.novaAdresa = { ...this.adresa };
@@ -44,6 +49,34 @@ export class AdresaComponent implements OnInit {
     } catch (error) {
       this.openSnackBar(error.message);
     }
+  }
+
+  getAllGradovi() {
+    const response = lastValueFrom(
+      this.http.get(`${this.envService.apiURL}/communities/allGrad`)
+    )
+      .then((response: any) => {
+        response.forEach(grad => {
+          this.gradovi.push(grad.nazivGrada);
+        });
+      })
+      .catch((error) => {
+        console.log('Error getting addresses: ', error);
+      });
+  }
+
+  getAllDrzave() {
+    const response = lastValueFrom(
+      this.http.get(`${this.envService.apiURL}/communities/allDrzava`)
+    )
+      .then((response: any) => {
+        response.forEach(drzava => {
+          this.drzave.push(drzava.nazivDrzave);
+        });
+      })
+      .catch((error) => {
+        console.log('Error getting addresses: ', error);
+      });
   }
 
   cancelEdit() {

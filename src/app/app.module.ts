@@ -17,6 +17,7 @@ import { PonudaPageComponent } from './ponuda-page/ponuda-page.component';
 import { PonudaComponent } from './ponuda-page/ponuda/ponuda.component';
 import { ZahtevComponent } from './ponuda-page/zahtev/zahtev.component';
 import { VoziloPageComponent } from './vozilo-page/vozilo-page.component';
+import { RacunPageComponent } from './racun-page/racun-page.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { VoziloPageComponent } from './vozilo-page/vozilo-page.component';
     PonudaComponent,
     ZahtevComponent,
     VoziloPageComponent,
+    RacunPageComponent,
   ],
   imports: [
     BrowserModule,

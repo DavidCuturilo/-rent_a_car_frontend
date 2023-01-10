@@ -2,29 +2,9 @@
   padding: 2rem;
   margin-top: 5rem;
 
-  .search {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .search-field {
-      display: flex;
-      align-items: center;
-
-      mat-form-field {
-        width: 200px;
-      }
-
-      mat-icon {
-        cursor: pointer;
-      }
-    }
-  }
-
   .title {
     font-size: 2rem;
     color: #00999e;
-    margin-right: 1rem;
   }
 }
 

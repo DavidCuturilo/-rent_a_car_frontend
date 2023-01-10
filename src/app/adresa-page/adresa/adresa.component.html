@@ -17,14 +17,19 @@
         <mat-label>Broj</mat-label>
         <input matInput [(ngModel)]="adresa.broj" />
       </mat-form-field>
-      <mat-form-field *ngIf="editMode" class="example-full-width">
-        <mat-label>Grad</mat-label>
-        <input matInput [(ngModel)]="adresa.nazivGrada" />
+      <mat-form-field *ngIf="editMode">
+        <mat-select [(ngModel)]="adresa.nazivGrada">
+            <mat-option *ngFor="let grad of gradovi"
+                [value]="grad">{{grad}}</mat-option>
+        </mat-select>
       </mat-form-field>
-      <mat-form-field *ngIf="editMode" class="example-full-width">
-        <mat-label>Drzava</mat-label>
-        <input matInput [(ngModel)]="adresa.nazivDrzave" />
+      <mat-form-field *ngIf="editMode">
+        <mat-select [(ngModel)]="adresa.nazivDrzave">
+            <mat-option *ngFor="let drzava of drzave"
+                [value]="drzava">{{drzava}}</mat-option>
+        </mat-select>
       </mat-form-field>
+
     </div>
     <div class="controls">
       <mat-icon

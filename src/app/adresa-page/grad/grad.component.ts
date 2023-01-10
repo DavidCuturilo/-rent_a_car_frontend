@@ -19,6 +19,7 @@ export class GradComponent implements OnInit {
   editMode: boolean = false;
 
   noviGrad;
+  drzave = [];
 
   @Input() grad: {
     nazivGrada: string;
@@ -26,7 +27,9 @@ export class GradComponent implements OnInit {
     gradID: number;
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllDrzave();
+  }
 
   async deleteGrad() {
     this.noviGrad = { ...this.grad };
@@ -71,6 +74,20 @@ export class GradComponent implements OnInit {
     } catch (error) {
       this.openSnackBar(error.message);
     }
+  }
+
+  getAllDrzave() {
+    const response = lastValueFrom(
+      this.http.get(`${this.envService.apiURL}/communities/allDrzava`)
+    )
+      .then((response: any) => {
+        response.forEach(drzava => {
+          this.drzave.push(drzava.nazivDrzave);
+        });
+      })
+      .catch((error) => {
+        console.log('Error getting addresses: ', error);
+      });
   }
 
   openSnackBar(message: string) {

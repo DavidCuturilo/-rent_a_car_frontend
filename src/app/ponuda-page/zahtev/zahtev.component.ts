@@ -22,9 +22,13 @@ export class ZahtevComponent implements OnInit {
   zahtevCopy: typeof this.zahtevi;
   public columnsSchema: any[];
   public displayedColumns: string[];
+  imenaPrezimenaKlijenata = [];
+  imenaPrezimenaRadnika = [];
 
   async ngOnInit() {
     await this.getzahtevi();
+    await this.getKlijente();
+    await this.getRadnike();
     if (this.zahtevi) {
       this.columnsSchema = [
         {
@@ -128,6 +132,15 @@ export class ZahtevComponent implements OnInit {
   }
 
   ponisti(element: any) {
+    let empty = true;
+    for (const key in element) {
+      if (element[key]) {
+        empty = true;
+      }
+    }
+    if (empty) {
+      this.zahtevi = this.zahtevi.filter((zahtev) => zahtev.zahtevID != element.zahtevID);
+    }
     element.isEdit = !element.isEdit;
   }
 
@@ -151,6 +164,36 @@ export class ZahtevComponent implements OnInit {
       this.openSnackBar(`${response.message}`);
     } catch (error) {
       this.openSnackBar(`Error while deleting zahtev ${error}`);
+    }
+  }
+
+  async getRadnike() {
+    try {
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.envService.apiURL}/communities/allRadnik`)
+      );
+      if (!response?.response?.error) {
+        response.forEach(radnik => {
+          this.imenaPrezimenaRadnika.push(radnik.imePrezimeRadnika);
+        });
+      }
+    } catch (error) {
+
+    }
+  }
+
+  async getKlijente() {
+    try {
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.envService.apiURL}/communities/allKlijent`)
+      );
+      if (!response?.response?.error) {
+        response.forEach(klijent => {
+          this.imenaPrezimenaKlijenata.push(klijent.imePrezimeKlijenta);
+        });
+      }
+    } catch (error) {
+
     }
   }
 }

@@ -22,9 +22,15 @@ export class PonudaComponent implements OnInit {
   ponudaCopy: typeof this.ponude;
   public columnsSchema: any[];
   public displayedColumns: string[];
+  imenaPrezimenaRadnika = [];
+  imenaPrezimenaKlijenata = [];
+  nasloviZahteva = [];
 
   async ngOnInit() {
     await this.getPonude();
+    await this.getKlijente();
+    await this.getRadnike();
+    await this.getNaslove();
     if (this.ponude) {
       this.columnsSchema = [
         {
@@ -83,6 +89,51 @@ export class PonudaComponent implements OnInit {
       duration: 4000,
       verticalPosition: 'top',
     });
+  }
+
+  async getRadnike() {
+    try {
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.envService.apiURL}/communities/allRadnik`)
+      );
+      if (!response?.response?.error) {
+        response.forEach(radnik => {
+          this.imenaPrezimenaRadnika.push(radnik.imePrezimeRadnika);
+        });
+      }
+    } catch (error) {
+
+    }
+  }
+
+  async getKlijente() {
+    try {
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.envService.apiURL}/communities/allKlijent`)
+      );
+      if (!response?.response?.error) {
+        response.forEach(klijent => {
+          this.imenaPrezimenaKlijenata.push(klijent.imePrezimeKlijenta);
+        });
+      }
+    } catch (error) {
+
+    }
+  }
+
+  async getNaslove() {
+    try {
+      const response: any = await lastValueFrom(
+        this.http.get(`${this.envService.apiURL}/communities/allZahtev`)
+      );
+      if (!response?.response?.error) {
+        response.forEach(zahtev => {
+          this.nasloviZahteva.push(zahtev.naslov);
+        });
+      }
+    } catch (error) {
+
+    }
   }
 
   async getPonude() {

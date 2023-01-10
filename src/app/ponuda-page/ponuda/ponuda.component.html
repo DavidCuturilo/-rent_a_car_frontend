@@ -24,8 +24,9 @@
                                   {{ element[col.key] }}
                               </span>
                           </div>
-                          <div [ngSwitch]="col.type" *ngIf="element.isEdit" >
-                              <div class="btn-edit" *ngSwitchCase="'isEdit'">
+
+                          <div *ngIf="element.isEdit" >
+                              <div class="btn-edit" *ngIf="col.key === 'isEdit'; else dataField">
                                   <mat-icon (click)="sacuvaj(element)" fontIcon="save" #tooltip="matTooltip"
                                       matTooltip="Sačuvaj" matTooltipPosition="below">save</mat-icon>
 
@@ -35,12 +36,33 @@
                                   <mat-icon (click)="obrisi(element)" fontIcon="delete" #tooltip="matTooltip" matTooltip="Obriši"
                                       matTooltipPosition="below">delete</mat-icon>
                               </div>
-                              <span *ngSwitchDefault #dataField>
-                                <mat-form-field class="mat-input">
+                              <ng-template #dataField>
+                                <mat-form-field class="mat-input" *ngIf="col.key != 'imePrezimeKlijenta' && col.key != 'imePrezimeRadnika' && col.key != 'naslov'">
                                   <input [type]="col.type" matInput
                                       [(ngModel)]="element[col.key]" />
-                              </mat-form-field>
-                            </span>
+                                </mat-form-field>
+
+                                  <mat-form-field class="mat-input" *ngIf="col.key == 'imePrezimeRadnika'">
+                                      <mat-select [(ngModel)]="element[col.key]">
+                                        <mat-option *ngFor="let imePrezime of imenaPrezimenaRadnika"
+                                            [value]="imePrezime">{{imePrezime}}</mat-option>
+                                      </mat-select>
+                                  </mat-form-field>
+
+                                <mat-form-field class="mat-input" *ngIf="col.key == 'imePrezimeKlijenta'">
+                                    <mat-select [(ngModel)]="element[col.key]">
+                                      <mat-option *ngFor="let imePrezime of imenaPrezimenaKlijenata"
+                                          [value]="imePrezime">{{imePrezime}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <mat-form-field class="mat-input" *ngIf="col.key == 'naslov'">
+                                  <mat-select [(ngModel)]="element[col.key]">
+                                    <mat-option *ngFor="let naslov of nasloviZahteva"
+                                        [value]="naslov">{{naslov}}</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                            </ng-template>
                           </div>
                       </td>
                   </ng-container>

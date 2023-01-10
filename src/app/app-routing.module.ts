@@ -1,3 +1,4 @@
+import { RacunPageComponent } from './racun-page/racun-page.component';
 import { VoziloPageComponent } from './vozilo-page/vozilo-page.component';
 import { PonudaPageComponent } from './ponuda-page/ponuda-page.component';
 import { AdresaPageComponent } from './adresa-page/adresa-page.component';
@@ -8,6 +9,7 @@ const routes: Routes = [
   { path: 'adresa-page', component: AdresaPageComponent },
   { path: 'ponuda-page', component: PonudaPageComponent },
   { path: 'vozilo-page', component: VoziloPageComponent },
+  { path: 'racun-page', component: RacunPageComponent },
 
 ];
 
