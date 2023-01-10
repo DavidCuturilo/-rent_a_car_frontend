@@ -164,7 +164,15 @@ export class VoziloPageComponent implements OnInit {
   }
 
   ponisti(element: any) {
-    element.isEdit = !element.isEdit;
+    let empty = true;
+    for (const key in element) {
+      if (element[key]) {
+        empty = true;
+      }
+    }
+    if (empty) {
+      this.vozila = this.vozila.filter((vozilo) => vozilo.registarski_broj != element.registarski_broj);
+    }
   }
 
   izmeni(element: any) {

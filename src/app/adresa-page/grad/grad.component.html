@@ -12,6 +12,7 @@
         <input matInput [(ngModel)]="grad.nazivGrada" />
       </mat-form-field>
       <mat-form-field *ngIf="editMode">
+        <mat-label>Drzava</mat-label>
         <mat-select [(ngModel)]="grad.nazivDrzave">
             <mat-option *ngFor="let drzava of drzave"
                 [value]="drzava">{{drzava}}</mat-option>

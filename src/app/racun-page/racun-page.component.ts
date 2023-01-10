@@ -203,7 +203,15 @@ export class RacunPageComponent implements OnInit {
   }
 
   ponisti(element: any) {
-    element.isEdit = !element.isEdit;
+    let empty = true;
+    for (const key in element) {
+      if (element[key]) {
+        empty = true;
+      }
+    }
+    if (empty) {
+      this.racuni = this.racuni.filter((racun) => racun.racunID != element.racunID);
+    }
   }
 
   izmeni(element: any) {
@@ -212,20 +220,26 @@ export class RacunPageComponent implements OnInit {
   }
 
   async obrisi(element: any) {
-    try {
-      const response: any = await lastValueFrom(
-        this.http.delete(
-          `${this.envService.apiURL}/communities/deleteRacunById/${element.racunID}`
-        )
+    if (!element.racunID) {
+      this.racuni = this.racuni.filter(
+        (racun) => racun.racunID != element.racunID
       );
-      this.openSnackBar(`${response.message}`);
-      if (!response?.response?.error) {
-        this.racuni = this.racuni.filter(
-          (racun) => racun.racunID != element.racunID
+    } else {
+      try {
+        const response: any = await lastValueFrom(
+          this.http.delete(
+            `${this.envService.apiURL}/communities/deleteRacunById/${element.racunID}`
+          )
         );
+        this.openSnackBar(`${response.message}`);
+        if (!response?.response?.error) {
+          this.racuni = this.racuni.filter(
+            (racun) => racun.racunID != element.racunID
+          );
+        }
+      } catch (error) {
+        this.openSnackBar(`Error while deleting racun ${error}`);
       }
-    } catch (error) {
-      this.openSnackBar(`Error while deleting racun ${error}`);
     }
   }
 }

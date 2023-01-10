@@ -185,6 +185,15 @@ export class PonudaComponent implements OnInit {
   }
 
   ponisti(element: any) {
+    let empty = true;
+    for (const key in element) {
+      if (element[key]) {
+        empty = true;
+      }
+    }
+    if (empty) {
+      this.ponude = this.ponude.filter((ponuda) => ponuda.ponudaID != element.ponudaID);
+    }
     element.isEdit = !element.isEdit;
   }
 
@@ -194,20 +203,26 @@ export class PonudaComponent implements OnInit {
   }
 
   async obrisi(element: any) {
-    try {
-      const response: any = await lastValueFrom(
-        this.http.delete(
-          `${this.envService.apiURL}/communities/deletePonudaById/${element.ponudaID}`
-        )
+    if (!element.ponudaID) {
+      this.ponude = this.ponude.filter(
+        (ponuda) => ponuda.ponudaID != element.ponudaID
       );
-      this.openSnackBar(`${response.message}`);
-      if (!response?.response?.error) {
-        this.ponude = this.ponude.filter(
-          (ponuda) => ponuda.ponudaID != element.ponudaID
+    } else {
+      try {
+        const response: any = await lastValueFrom(
+          this.http.delete(
+            `${this.envService.apiURL}/communities/deletePonudaById/${element.ponudaID}`
+          )
         );
+        this.openSnackBar(`${response.message}`);
+        if (!response?.response?.error) {
+          this.ponude = this.ponude.filter(
+            (ponuda) => ponuda.ponudaID != element.ponudaID
+          );
+        }
+      } catch (error) {
+        this.openSnackBar(`Error while deleting ponuda ${error}`);
       }
-    } catch (error) {
-      this.openSnackBar(`Error whilw deleting ponuda ${error}`);
     }
   }
 }

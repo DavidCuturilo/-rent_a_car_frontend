@@ -17,12 +17,14 @@
             <input matInput [(ngModel)]="novaAdresa.broj"/>
           </mat-form-field>
           <mat-form-field class="example-full-width">
+            <mat-label>Grad</mat-label>
             <mat-select [(ngModel)]="novaAdresa.nazivGrada">
                 <mat-option *ngFor="let grad of naziviGradova"
                     [value]="grad">{{grad}}</mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="example-full-width">
+            <mat-label>Drzava</mat-label>
             <mat-select [(ngModel)]="novaAdresa.nazivDrzave">
                 <mat-option *ngFor="let drzava of naziviDrzava"
                     [value]="drzava">{{drzava}}</mat-option>
@@ -64,7 +66,8 @@
             <input matInput [(ngModel)]="noviGrad.nazivGrada"/>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <mat-select [(ngModel)]="noviGrad.nazivDrzave">
+            <mat-label>Drzava</mat-label>
+            <mat-select [(ngModel)]="noviGrad.nazivDrzave" placeho>
                 <mat-option *ngFor="let drzava of naziviDrzava"
                     [value]="drzava">{{drzava}}</mat-option>
             </mat-select>

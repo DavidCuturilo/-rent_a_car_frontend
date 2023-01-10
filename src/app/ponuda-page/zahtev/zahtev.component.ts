@@ -150,20 +150,26 @@ export class ZahtevComponent implements OnInit {
   }
 
   async obrisi(element: any) {
-    try {
-      const response: any = await lastValueFrom(
-        this.http.delete(
-          `${this.envService.apiURL}/communities/deleteZahtevById/${element.zahtevID}`
-        )
+    if (!element.zahtevID) {
+      this.zahtevi = this.zahtevi.filter(
+        (zahtev) => zahtev.zahtevID != element.zahtevID
       );
-      if (!response?.response?.error) {
-        this.zahtevi = this.zahtevi.filter(
-          (zahtev) => zahtev.zahtevID != element.zahtevID
+    } else {
+      try {
+        const response: any = await lastValueFrom(
+          this.http.delete(
+            `${this.envService.apiURL}/communities/deleteZahtevById/${element.zahtevID}`
+          )
         );
+        if (!response?.response?.error) {
+          this.zahtevi = this.zahtevi.filter(
+            (zahtev) => zahtev.zahtevID != element.zahtevID
+          );
+        }
+        this.openSnackBar(`${response.message}`);
+      } catch (error) {
+        this.openSnackBar(`Error while deleting zahtev ${error}`);
       }
-      this.openSnackBar(`${response.message}`);
-    } catch (error) {
-      this.openSnackBar(`Error while deleting zahtev ${error}`);
     }
   }
 
