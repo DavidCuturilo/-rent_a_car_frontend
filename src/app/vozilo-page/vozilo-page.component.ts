@@ -132,8 +132,8 @@ export class VoziloPageComponent implements OnInit {
       model: '',
       marka: '',
       pogon: '',
-      tipGoriva: '',
-      jacinaMotora: '',
+      tip_goriva: '',
+      jacina_motora: '',
       kilometraza: '',
       datumistekaregistracije: '',
       isEdit: true,
@@ -146,19 +146,14 @@ export class VoziloPageComponent implements OnInit {
   async sacuvaj(element: any) {
     try {
       const response: any = await lastValueFrom(
-        this.http.post(
-          `${this.envService.apiURL}/communities/insertVozilo`,
+        this.http.put(
+          `${this.envService.apiURL}/communities/updateVoziloById`,
           element
         )
       );
-      if (response?.response?.error) {
-        this.vozila.filter(
-          (vozilo) => vozilo.registarski_broj != element.registarski_broj
-        );
-      } else {
-        element.isEdit = !element.isEdit;
-      }
       this.openSnackBar(`${response.message}`);
+      element.isEdit = !element.isEdit;
+      this.ngOnInit();
     } catch (error) {
       this.openSnackBar(error.message);
     }
@@ -184,8 +179,27 @@ export class VoziloPageComponent implements OnInit {
   }
 
   async obrisi(element: any) {
-    this.vozila = this.vozila.filter(
-      (vozilo) => vozilo.registarski_broj != element.registarski_broj
-    );
+    if (!element.registarski_broj) {
+      this.vozila = this.vozila.filter(
+        (vozilo) => vozilo.registarski_broj != element.registarski_broj
+      );
+    } else {
+      try {
+        const response: any = await lastValueFrom(
+          this.http.delete(
+            `${this.envService.apiURL}/communities/deleteVoziloById/${element.registarski_broj}`
+          )
+        );
+        this.openSnackBar(`${response.message}`);
+        if (!response?.response?.error) {
+          this.vozila = this.vozila.filter(
+            (vozilo) => vozilo.registarski_broj != element.registarski_broj
+          );
+          this.ngOnInit();
+        }
+      } catch (error) {
+        this.openSnackBar(`Error while deleting vozilo ${error}`);
+      }
+    }
   }
 }
