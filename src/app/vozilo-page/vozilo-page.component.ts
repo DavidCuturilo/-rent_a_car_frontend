@@ -24,6 +24,7 @@ export class VoziloPageComponent implements OnInit {
   public columnsSchema: any[];
   public displayedColumns: string[];
   vozilaResetSearch
+  tipGoriva = ['Dizel', 'Benzin', 'Hibrid', 'Plin']
 
   async ngOnInit() {
     await this.getVozila();
@@ -61,7 +62,7 @@ export class VoziloPageComponent implements OnInit {
         },
         {
           key: 'datumistekaregistracije',
-          type: 'text',
+          type: 'date',
           label: 'Datum isteka registracije',
         },
         {
@@ -118,7 +119,7 @@ export class VoziloPageComponent implements OnInit {
       this.vozila.map((vozilo) => {
         vozilo.datumistekaregistracije = new Date(
           vozilo.datumistekaregistracije
-        ).toLocaleString();
+        ).toISOString().split('T')[0];
       });
     } catch (error) {
       console.log(error);

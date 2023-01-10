@@ -1,0 +1,114 @@
+<div class="container">
+  <span class="title">Vrsta usluge</span>
+  <mat-card class="card">
+      <mat-card-content class="card-content">
+          <button (click)="dodajUslugu()" class="dodaj" mat-raised-button>
+              <mat-icon>add</mat-icon>
+              Dodaj novu uslugu
+          </button>
+          <article>
+              <table mat-table [dataSource]="usluge" class="table">
+                  <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
+                      <th mat-header-cell *matHeaderCellDef>
+                          {{ col.label }}
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                          <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
+                              <div class="btn-edit" *ngSwitchCase="'isEdit'">
+                                  <mat-icon (click)="izmeni(element)" fontIcon="edit"
+                                      #tooltip="matTooltip" matTooltip="Izmeni" matTooltipPosition="below">edit</mat-icon>
+                                  <mat-icon (click)="obrisiUslugu(element)" fontIcon="delete" #tooltip="matTooltip" matTooltip="Obriši"
+                                      matTooltipPosition="below">delete</mat-icon>
+                              </div>
+                              <span *ngSwitchDefault>
+                                  {{ element[col.key] }}
+                              </span>
+                          </div>
+                          <div [ngSwitch]="col.type" *ngIf="element.isEdit" >
+                              <div class="btn-edit" *ngSwitchCase="'isEdit'">
+                                  <mat-icon (click)="sacuvajUslugu(element)" fontIcon="save" #tooltip="matTooltip"
+                                      matTooltip="Sačuvaj" matTooltipPosition="below">save</mat-icon>
+
+                                  <mat-icon (click)="ponistiUslugu(element)" fontIcon="cancel" #tooltip="matTooltip"
+                                      matTooltip="Poništi" matTooltipPosition="below">cancel</mat-icon>
+
+                                  <mat-icon (click)="obrisiUslugu(element)" fontIcon="delete" #tooltip="matTooltip" matTooltip="Obriši"
+                                      matTooltipPosition="below">delete</mat-icon>
+                              </div>
+                              <span *ngSwitchDefault #dataField>
+                                <mat-form-field class="mat-input" *ngIf="col.key != aktuelnaCena">
+                                  <input [type]="col.type" matInput
+                                      [(ngModel)]="element[col.key]" />
+                              </mat-form-field>
+
+                              <mat-form-field class="mat-input" *ngIf="col.key == aktuelnaCena">
+                                <input [type]="col.type" matInput
+                                    [(ngModel)]="element[col.key]" />
+                            </mat-form-field>
+                            </span>
+                          </div>
+                      </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              </table>
+          </article>
+      </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="container">
+  <span class="title">Cena usluge</span>
+  <mat-card class="card">
+      <mat-card-content class="card-content">
+          <button (click)="dodajCenuUsluge()" class="dodaj" mat-raised-button>
+              <mat-icon>add</mat-icon>
+              Dodaj novu cenu usluge
+          </button>
+          <article>
+              <table mat-table [dataSource]="cene" class="table">
+                  <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaCenaUsluge">
+                      <th mat-header-cell *matHeaderCellDef>
+                          {{ col.label }}
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                          <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
+                              <div class="btn-edit" *ngSwitchCase="'isEdit'">
+                                  <mat-icon (click)="izmeni(element)" fontIcon="edit"
+                                      #tooltip="matTooltip" matTooltip="Izmeni" matTooltipPosition="below">edit</mat-icon>
+                              </div>
+                              <span *ngSwitchDefault>
+                                  {{ element[col.key] }}
+                              </span>
+                          </div>
+                          <div [ngSwitch]="col.type" *ngIf="element.isEdit" >
+                              <div class="btn-edit" *ngSwitchCase="'isEdit'">
+                                  <mat-icon (click)="sacuvajCenu(element)" fontIcon="save" #tooltip="matTooltip"
+                                      matTooltip="Sačuvaj" matTooltipPosition="below">save</mat-icon>
+
+                                  <mat-icon (click)="ponistiCenu(element)" fontIcon="cancel" #tooltip="matTooltip"
+                                      matTooltip="Poništi" matTooltipPosition="below">cancel</mat-icon>
+
+                              </div>
+                              <span *ngSwitchDefault #dataField>
+                                <mat-form-field class="mat-input" *ngIf=" col.key != 'naziv'">
+                                  <input [type]="col.type" matInput
+                                      [(ngModel)]="element[col.key]" />
+                              </mat-form-field>
+                            <mat-form-field *ngIf="col.key == 'naziv'">
+                              <mat-select [(ngModel)]="element[col.key]">
+                                  <mat-option *ngFor="let nazivUsluge of naziviUsluga"
+                                      [value]="nazivUsluge">{{nazivUsluge}}</mat-option>
+                              </mat-select>
+                          </mat-form-field>
+                            </span>
+                          </div>
+                      </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumnsCenaUsluge"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumnsCenaUsluge"></tr>
+              </table>
+          </article>
+      </mat-card-content>
+  </mat-card>
+</div>

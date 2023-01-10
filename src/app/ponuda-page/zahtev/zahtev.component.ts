@@ -24,6 +24,7 @@ export class ZahtevComponent implements OnInit {
   public displayedColumns: string[];
   imenaPrezimenaKlijenata = [];
   imenaPrezimenaRadnika = [];
+  odobren = ['Odobren', 'Nije odobren'];
 
   async ngOnInit() {
     await this.getzahtevi();
@@ -43,12 +44,12 @@ export class ZahtevComponent implements OnInit {
         },
         {
           key: 'datumOd',
-          type: 'text',
+          type: 'date',
           label: 'Datum od',
         },
         {
           key: 'datumDo',
-          type: 'text',
+          type: 'date',
           label: 'Datum do',
         },
         {
@@ -92,8 +93,8 @@ export class ZahtevComponent implements OnInit {
       this.zahtevi = response;
       this.zahtevi.map((zahtev) => {
           (zahtev.odobren = zahtev.odobren ? 'Odobren' : 'Nije odobren'),
-          (zahtev.datumOd = new Date(zahtev.datumOd).toLocaleString()),
-          (zahtev.datumDo = new Date(zahtev.datumDo).toLocaleString());
+          (zahtev.datumOd = new Date(zahtev.datumOd).toISOString().split('T')[0]),
+          (zahtev.datumDo = new Date(zahtev.datumDo).toISOString().split('T')[0]);
       });
     } catch (error) {
       console.log(error);

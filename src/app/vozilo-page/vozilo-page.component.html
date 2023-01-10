@@ -46,10 +46,17 @@
                                       matTooltipPosition="below">delete</mat-icon>
                               </div>
                               <span *ngSwitchDefault #dataField>
-                                <mat-form-field class="mat-input">
+                                <mat-form-field class="mat-input" *ngIf="col.key != 'tip_goriva'">
                                   <input [type]="col.type" matInput
                                       [(ngModel)]="element[col.key]" />
                               </mat-form-field>
+
+                              <mat-form-field class="mat-input"  *ngIf="col.key == 'tip_goriva'">
+                                <mat-select [(ngModel)]="element[col.key]">
+                                  <mat-option *ngFor="let gorivo of tipGoriva"
+                                      [value]="gorivo">{{gorivo}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
                             </span>
                           </div>
                       </td>

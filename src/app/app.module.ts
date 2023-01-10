@@ -20,6 +20,7 @@ import { VoziloPageComponent } from './vozilo-page/vozilo-page.component';
 import { RacunPageComponent } from './racun-page/racun-page.component';
 import { UgovorPageComponent } from './ugovor-page/ugovor-page.component';
 import { OstecenjaPageComponent } from './ostecenja-page/ostecenja-page.component';
+import { UslugaPageComponent } from './usluga-page/usluga-page.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { OstecenjaPageComponent } from './ostecenja-page/ostecenja-page.componen
     RacunPageComponent,
     UgovorPageComponent,
     OstecenjaPageComponent,
+    UslugaPageComponent,
   ],
   imports: [
     BrowserModule,

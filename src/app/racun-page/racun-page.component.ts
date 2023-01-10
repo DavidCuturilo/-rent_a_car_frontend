@@ -26,6 +26,7 @@ export class RacunPageComponent implements OnInit {
   racuniTekuceGodine;
   racuniIzPrethodneGodine;
   racuniRanijihGodina;
+  vrstaPlacanja = ['Gotovina', 'Kartica', 'Odlozeno plazanje']
 
   async ngOnInit() {
     await this.getRacune();
@@ -42,22 +43,22 @@ export class RacunPageComponent implements OnInit {
         },
         {
           key: 'datumIzdavanja',
-          type: 'text',
+          type: 'date',
           label: 'Datum izdavanja',
         },
         {
           key: 'datumPrometa',
-          type: 'text',
+          type: 'date',
           label: 'Datum prometa',
         },
         {
           key: 'datumStampe',
-          type: 'text',
+          type: 'date',
           label: 'Datum stampe',
         },
         {
           key: 'datumDospeca',
-          type: 'text',
+          type: 'date',
           label: 'Datum dospeca',
         },
         {
@@ -110,10 +111,10 @@ export class RacunPageComponent implements OnInit {
       );
       this.racuni = response;
       this.racuni.map((racun) => {
-        (racun.datumIzdavanja = new Date(racun.datumIzdavanja).toLocaleString()),
-          (racun.datumStampe = new Date(racun.datumStampe).toLocaleString()),
-          (racun.datumPrometa = new Date(racun.datumPrometa).toLocaleString()),
-          (racun.datumDospeca = new Date(racun.datumDospeca).toLocaleString());
+        (racun.datumIzdavanja = new Date(racun.datumIzdavanja).toISOString().split('T')[0]),
+          (racun.datumStampe = new Date(racun.datumStampe).toISOString().split('T')[0]),
+          (racun.datumPrometa = new Date(racun.datumPrometa).toISOString().split('T')[0]),
+          (racun.datumDospeca = new Date(racun.datumDospeca).toISOString().split('T')[0]);
       });
     } catch (error) {
       console.log(error);
@@ -127,10 +128,10 @@ export class RacunPageComponent implements OnInit {
       );
       this.racuniTekuceGodine = response;
       this.racuniTekuceGodine.map((racun) => {
-        (racun.datumIzdavanja = new Date(racun.datumIzdavanja).toLocaleString()),
-          (racun.datumStampe = new Date(racun.datumStampe).toLocaleString()),
-          (racun.datumPrometa = new Date(racun.datumPrometa).toLocaleString()),
-          (racun.datumDospeca = new Date(racun.datumDospeca).toLocaleString());
+        (racun.datumIzdavanja = new Date(racun.datumIzdavanja).toISOString().split('T')[0]),
+          (racun.datumStampe = new Date(racun.datumStampe).toISOString().split('T')[0]),
+          (racun.datumPrometa = new Date(racun.datumPrometa).toISOString().split('T')[0]),
+          (racun.datumDospeca = new Date(racun.datumDospeca).toISOString().split('T')[0]);
       });
     } catch (error) {
       console.log(error);
@@ -144,10 +145,10 @@ export class RacunPageComponent implements OnInit {
       );
       this.racuniIzPrethodneGodine = response;
       this.racuniIzPrethodneGodine.map((racun) => {
-        (racun.datumIzdavanja = new Date(racun.datumIzdavanja).toLocaleString()),
-          (racun.datumStampe = new Date(racun.datumStampe).toLocaleString()),
-          (racun.datumPrometa = new Date(racun.datumPrometa).toLocaleString()),
-          (racun.datumDospeca = new Date(racun.datumDospeca).toLocaleString());
+        (racun.datumIzdavanja = new Date(racun.datumIzdavanja).toISOString().split('T')[0]),
+          (racun.datumStampe = new Date(racun.datumStampe).toISOString().split('T')[0]),
+          (racun.datumPrometa = new Date(racun.datumPrometa).toISOString().split('T')[0]),
+          (racun.datumDospeca = new Date(racun.datumDospeca).toISOString().split('T')[0]);
       });
     } catch (error) {
       console.log(error);
@@ -161,10 +162,10 @@ export class RacunPageComponent implements OnInit {
       );
       this.racuniRanijihGodina = response;
       this.racuniRanijihGodina.map((racun) => {
-        (racun.datumIzdavanja = new Date(racun.datumIzdavanja).toLocaleString()),
-          (racun.datumStampe = new Date(racun.datumStampe).toLocaleString()),
-          (racun.datumPrometa = new Date(racun.datumPrometa).toLocaleString()),
-          (racun.datumDospeca = new Date(racun.datumDospeca).toLocaleString());
+        (racun.datumIzdavanja = new Date(racun.datumIzdavanja).toISOString().split('T')[0]),
+          (racun.datumStampe = new Date(racun.datumStampe).toISOString().split('T')[0]),
+          (racun.datumPrometa = new Date(racun.datumPrometa).toISOString().split('T')[0]),
+          (racun.datumDospeca = new Date(racun.datumDospeca).toISOString().split('T')[0]);
       });
     } catch (error) {
       console.log(error);

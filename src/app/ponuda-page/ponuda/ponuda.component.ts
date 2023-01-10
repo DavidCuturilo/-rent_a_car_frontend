@@ -47,17 +47,17 @@ export class PonudaComponent implements OnInit {
         },
         {
           key: 'datumUnosa',
-          type: 'text',
+          type: 'date',
           label: 'Datum unosa',
         },
         {
           key: 'datumStampe',
-          type: 'text',
+          type: 'date',
           label: 'Datum stampe',
         },
         {
           key: 'datumIsteka',
-          type: 'text',
+          type: 'date',
           label: 'Datum isteka',
         },
         {
@@ -111,9 +111,9 @@ export class PonudaComponent implements OnInit {
         } else {
           this.ponude = Array.isArray(response) ? response : [response];
           this.ponude.map((ponuda) => {
-            (ponuda.datumUnosa = new Date(ponuda.datumUnosa).toLocaleString()),
-              (ponuda.datumStampe = new Date(ponuda.datumStampe).toLocaleString()),
-              (ponuda.datumIsteka = new Date(ponuda.datumIsteka).toLocaleString());
+            (ponuda.datumUnosa = new Date(ponuda.datumUnosa).toISOString().split('T')[0]),
+              (ponuda.datumStampe = new Date(ponuda.datumStampe).toISOString().split('T')[0]),
+              (ponuda.datumIsteka = new Date(ponuda.datumIsteka).toISOString().split('T')[0]);
           });
           this.openSnackBar(`Successfully searched ponude`);
         }
@@ -180,9 +180,9 @@ export class PonudaComponent implements OnInit {
       );
       this.ponude = response;
       this.ponude.map((ponuda) => {
-        (ponuda.datumUnosa = new Date(ponuda.datumUnosa).toLocaleString()),
-          (ponuda.datumStampe = new Date(ponuda.datumStampe).toLocaleString()),
-          (ponuda.datumIsteka = new Date(ponuda.datumIsteka).toLocaleString());
+        (ponuda.datumUnosa = new Date(ponuda.datumUnosa).toISOString().split('T')[0]),
+          (ponuda.datumStampe = new Date(ponuda.datumStampe).toISOString().split('T')[0]),
+          (ponuda.datumIsteka = new Date(ponuda.datumIsteka).toISOString().split('T')[0]);
       });
     } catch (error) {
       console.log(error);

@@ -33,6 +33,7 @@ export class UgovorPageComponent implements OnInit {
   brojeviRezervacije: number[] = [];
   ugovoriBitnijiDelovi = [];
   ugovoriDetalji = [];
+  tipCenovnika = ['Standardni cenovnik', 'Placanje sa popustom', 'Placanje u stranoj valuti']
 
   async ngOnInit() {
     await this.getUgovore();
@@ -51,12 +52,12 @@ export class UgovorPageComponent implements OnInit {
         },
         {
           key: 'datumUnosa',
-          type: 'text',
+          type: 'date',
           label: 'Datum unosa',
         },
         {
           key: 'datumStampe',
-          type: 'text',
+          type: 'date',
           label: 'Datum stampe',
         },
         {
@@ -130,12 +131,12 @@ export class UgovorPageComponent implements OnInit {
       this.columnsSchemaDetalji = [
         {
           key: 'datumUnosa',
-          type: 'text',
+          type: 'date',
           label: 'Datum unosa',
         },
         {
           key: 'datumStampe',
-          type: 'text',
+          type: 'date',
           label: 'Datum stampe',
         },
         {
@@ -198,8 +199,8 @@ export class UgovorPageComponent implements OnInit {
       );
       this.ugovori = response;
       this.ugovori.map((ugovor) => {
-          (ugovor.datumStampe = new Date(ugovor.datumStampe).toLocaleString()),
-          (ugovor.datumUnosa = new Date(ugovor.datumUnosa).toLocaleString());
+          (ugovor.datumStampe = new Date(ugovor.datumStampe).toISOString().split('T')[0]),
+          (ugovor.datumUnosa = new Date(ugovor.datumUnosa).toISOString().split('T')[0]);
       });
     } catch (error) {
       console.log(error);
@@ -213,8 +214,8 @@ export class UgovorPageComponent implements OnInit {
       );
       this.ugovoriBitnijiDelovi = response;
       this.ugovoriBitnijiDelovi.map((ugovor) => {
-          (ugovor.datumStampe = new Date(ugovor.datumStampe).toLocaleString()),
-          (ugovor.datumUnosa = new Date(ugovor.datumUnosa).toLocaleString());
+          (ugovor.datumStampe = new Date(ugovor.datumStampe).toISOString().split('T')[0]),
+          (ugovor.datumUnosa = new Date(ugovor.datumUnosa).toISOString().split('T')[0]);
       });
     } catch (error) {
       console.log(error);
@@ -228,8 +229,8 @@ export class UgovorPageComponent implements OnInit {
       );
       this.ugovoriDetalji = response;
       this.ugovoriDetalji.map((ugovor) => {
-          (ugovor.datumStampe = new Date(ugovor.datumStampe).toLocaleString()),
-          (ugovor.datumUnosa = new Date(ugovor.datumUnosa).toLocaleString());
+          (ugovor.datumStampe = new Date(ugovor.datumStampe).toISOString().split('T')[0]),
+          (ugovor.datumUnosa = new Date(ugovor.datumUnosa).toISOString().split('T')[0]);
       });
     } catch (error) {
       console.log(error);
