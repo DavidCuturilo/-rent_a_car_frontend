@@ -33,7 +33,6 @@ export class GradComponent implements OnInit {
 
   async deleteGrad() {
     this.noviGrad = { ...this.grad };
-    console.log(this.noviGrad.gradID);
     try {
       const response: any = await lastValueFrom(
         this.http.delete(
@@ -41,7 +40,6 @@ export class GradComponent implements OnInit {
         )
       );
       this.openSnackBar(response.message);
-      this.ngOnInit();
     } catch (error) {
       this.openSnackBar(error.message);
     }

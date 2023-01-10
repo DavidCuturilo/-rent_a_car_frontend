@@ -19,6 +19,7 @@ import { ZahtevComponent } from './ponuda-page/zahtev/zahtev.component';
 import { VoziloPageComponent } from './vozilo-page/vozilo-page.component';
 import { RacunPageComponent } from './racun-page/racun-page.component';
 import { UgovorPageComponent } from './ugovor-page/ugovor-page.component';
+import { OstecenjaPageComponent } from './ostecenja-page/ostecenja-page.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UgovorPageComponent } from './ugovor-page/ugovor-page.component';
     VoziloPageComponent,
     RacunPageComponent,
     UgovorPageComponent,
+    OstecenjaPageComponent,
   ],
   imports: [
     BrowserModule,

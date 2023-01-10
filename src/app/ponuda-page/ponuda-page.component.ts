@@ -9,8 +9,6 @@ import { Component, OnInit, Injector } from '@angular/core';
   styleUrls: ['./ponuda-page.component.scss'],
 })
 export class PonudaPageComponent implements OnInit {
-  zahtevi: any[];
-  klijenti: any[];
 
   constructor(private http: HttpClient, private injector: Injector) {}
 

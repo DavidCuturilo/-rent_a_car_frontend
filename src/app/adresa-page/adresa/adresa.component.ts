@@ -57,7 +57,9 @@ export class AdresaComponent implements OnInit {
     )
       .then((response: any) => {
         response.forEach(grad => {
-          this.gradovi.push(grad.nazivGrada);
+          if (!this.gradovi.find((g)=> g.nazivGrada == grad.nazivGrada)) {
+            this.gradovi.push(grad.nazivGrada);
+          }
         });
       })
       .catch((error) => {

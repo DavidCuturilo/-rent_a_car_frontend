@@ -134,14 +134,15 @@ export class ZahtevComponent implements OnInit {
   ponisti(element: any) {
     let empty = true;
     for (const key in element) {
-      if (element[key]) {
-        empty = true;
+      if (element[key] && key != 'isEdit') {
+        empty = false;
       }
     }
     if (empty) {
       this.zahtevi = this.zahtevi.filter((zahtev) => zahtev.zahtevID != element.zahtevID);
+    } else {
+      element.isEdit = !element.isEdit;
     }
-    element.isEdit = !element.isEdit;
   }
 
   izmeni(element: any) {

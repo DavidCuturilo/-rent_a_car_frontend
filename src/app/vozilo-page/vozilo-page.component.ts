@@ -166,12 +166,14 @@ export class VoziloPageComponent implements OnInit {
   ponisti(element: any) {
     let empty = true;
     for (const key in element) {
-      if (element[key]) {
-        empty = true;
+      if (element[key] && key != 'isEdit') {
+        empty = false;
       }
     }
     if (empty) {
       this.vozila = this.vozila.filter((vozilo) => vozilo.registarski_broj != element.registarski_broj);
+    } else {
+      element.isEdit = !element.isEdit;
     }
   }
 

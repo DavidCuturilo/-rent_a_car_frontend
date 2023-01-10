@@ -197,6 +197,7 @@ export class RacunPageComponent implements OnInit {
       );
       this.openSnackBar(`${response.message}`);
       element.isEdit = !element.isEdit;
+      this.ngOnInit();
     } catch (error) {
       this.openSnackBar(error.message);
     }
@@ -205,12 +206,14 @@ export class RacunPageComponent implements OnInit {
   ponisti(element: any) {
     let empty = true;
     for (const key in element) {
-      if (element[key]) {
-        empty = true;
+      if (element[key] && key != 'isEdit') {
+        empty = false;
       }
     }
     if (empty) {
       this.racuni = this.racuni.filter((racun) => racun.racunID != element.racunID);
+    } else {
+      element.isEdit = !element.isEdit;
     }
   }
 
@@ -236,6 +239,7 @@ export class RacunPageComponent implements OnInit {
           this.racuni = this.racuni.filter(
             (racun) => racun.racunID != element.racunID
           );
+          this.ngOnInit();
         }
       } catch (error) {
         this.openSnackBar(`Error while deleting racun ${error}`);

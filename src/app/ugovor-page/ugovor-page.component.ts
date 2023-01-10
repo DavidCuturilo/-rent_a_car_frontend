@@ -287,12 +287,14 @@ export class UgovorPageComponent implements OnInit {
   ponisti(element: any) {
     let empty = true;
     for (const key in element) {
-      if (element[key]) {
-        empty = true;
+      if (element[key] && key != 'isEdit') {
+        empty = false;
       }
     }
     if (empty) {
       this.ugovori = this.ugovori.filter((ugovor) => ugovor.ugovorID != element.ugovorID);
+    } else {
+      element.isEdit = !element.isEdit;
     }
   }
 
