@@ -1,0 +1,117 @@
+<div class="container">
+  <span class="title">Ugovori view</span>
+  <mat-card class="card">
+      <mat-card-content class="card-content">
+          <button (click)="dodajUgovor()" class="dodaj" mat-raised-button>
+              <mat-icon>add</mat-icon>
+              Dodaj novi ugovor
+          </button>
+          <article>
+              <table mat-table [dataSource]="ugovori" class="table">
+                  <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
+                      <th mat-header-cell *matHeaderCellDef>
+                          {{ col.label }}
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                          <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
+                              <div class="btn-edit" *ngSwitchCase="'isEdit'">
+                                  <mat-icon (click)="izmeni(element)" fontIcon="edit"
+                                      #tooltip="matTooltip" matTooltip="Izmeni" matTooltipPosition="below">edit</mat-icon>
+                                  <mat-icon (click)="obrisi(element)" fontIcon="delete" #tooltip="matTooltip" matTooltip="Obriši"
+                                      matTooltipPosition="below">delete</mat-icon>
+                              </div>
+                              <span *ngSwitchDefault>
+                                  {{ element[col.key] }}
+                              </span>
+                          </div>
+                          <div [ngSwitch]="col.type" *ngIf="element.isEdit" >
+                              <div class="btn-edit" *ngSwitchCase="'isEdit'">
+                                  <mat-icon (click)="sacuvaj(element)" fontIcon="save" #tooltip="matTooltip"
+                                      matTooltip="Sačuvaj" matTooltipPosition="below">save</mat-icon>
+
+                                  <mat-icon (click)="ponisti(element)" fontIcon="cancel" #tooltip="matTooltip"
+                                      matTooltip="Poništi" matTooltipPosition="below">cancel</mat-icon>
+
+                                  <mat-icon (click)="obrisi(element)" fontIcon="delete" #tooltip="matTooltip" matTooltip="Obriši"
+                                      matTooltipPosition="below">delete</mat-icon>
+                              </div>
+                              <span *ngSwitchDefault #dataField>
+                                <mat-form-field class="mat-input" *ngIf="col.key != 'imePrezimeRadnika' && col.key != 'brojRezervacije'">
+                                  <input [type]="col.type" matInput
+                                      [(ngModel)]="element[col.key]" />
+                              </mat-form-field>
+                              <mat-form-field *ngIf="col.key == 'imePrezimeRadnika'">
+                                <mat-select [(ngModel)]="element[col.key]">
+                                    <mat-option *ngFor="let imePrezime of imenaPrezimenaRadnika"
+                                        [value]="imePrezime">{{imePrezime}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field *ngIf="col.key == 'brojRezervacije'">
+                              <mat-select [(ngModel)]="element[col.key]">
+                                  <mat-option *ngFor="let brojRezervacije of brojeviRezervacije"
+                                      [value]="brojRezervacije">{{brojRezervacije}}</mat-option>
+                              </mat-select>
+                          </mat-form-field>
+                            </span>
+                          </div>
+                      </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              </table>
+          </article>
+      </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="container">
+  <span class="title">Prikaz bitnijih delova ugovora</span>
+  <mat-card class="card">
+      <mat-card-content class="card-content">
+          <article>
+              <table mat-table [dataSource]="ugovoriBitnijiDelovi" class="table">
+                  <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaBitnijiDelovi">
+                      <th mat-header-cell *matHeaderCellDef>
+                          {{ col.label }}
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                          <div [ngSwitch]="col.type">
+                              <span *ngSwitchDefault>
+                                  {{ element[col.key] }}
+                              </span>
+                          </div>
+                      </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumnsBitnijiDelovi"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumnsBitnijiDelovi"></tr>
+              </table>
+          </article>
+      </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="container">
+  <span class="title">Prikaz ostalih detalja ugovora</span>
+  <mat-card class="card">
+      <mat-card-content class="card-content">
+          <article>
+              <table mat-table [dataSource]="ugovoriDetalji" class="table">
+                  <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchemaDetalji">
+                      <th mat-header-cell *matHeaderCellDef>
+                          {{ col.label }}
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                          <div [ngSwitch]="col.type">
+                              <span *ngSwitchDefault>
+                                  {{ element[col.key] }}
+                              </span>
+                          </div>
+                      </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumnsDetalji"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumnsDetalji"></tr>
+              </table>
+          </article>
+      </mat-card-content>
+  </mat-card>
+</div>
